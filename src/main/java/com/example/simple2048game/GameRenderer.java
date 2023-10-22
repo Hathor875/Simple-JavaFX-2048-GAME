@@ -45,7 +45,8 @@ public class GameRenderer extends Application {
     }
     public void renderGameMatrix() {
         int[][] tab = GameBoard.GameMatrix.getInstance().getGameMatrix();
-        tab[0][0]=2;
+        GameBoard.GameMatrix.getInstance().addRandomTitle();
+        GameBoard.GameMatrix.getInstance().addRandomTitle();
         for (int i = 0; i < GameBoard.GameMatrix.getInstance().getMatrixSize(); i++) {
             for (int k = 0; k < GameBoard.GameMatrix.getInstance().getMatrixSize(); k++) {
                 area.add(GameBoard.AddRectangleWithText(tab[i][k]), i, k);

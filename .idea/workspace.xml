@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7e56632-011a-4461-a553-d3ad71a2a6ff" name="Changes" comment=".">
+    <list default="true" id="d7e56632-011a-4461-a553-d3ad71a2a6ff" name="Changes" comment="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add random add title without working check title is free">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/simple2048game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/simple2048game/GameBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/simple2048game/GameRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/simple2048game/GameRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/simple2048game/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,13 +31,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "/home/xeon/Pulpit/javaFX/game2048"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.example.simple2048game" />
@@ -52,6 +52,21 @@
       <command value="mvn compile exec:java -Dexec.mainClass=com.example.simple2048.GameRenderer" />
       <command value="mvn compile exec:java -Dexec.mainClass=com.example.simple2048game.GameRenderer" />
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="game2048" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="game2048" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -75,6 +90,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add random add title without working check title is free" />
+    <option name="LAST_COMMIT_MESSAGE" value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add random add title without working check title is free" />
   </component>
 </project>

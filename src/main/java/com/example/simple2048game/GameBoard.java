@@ -11,15 +11,13 @@ public class GameBoard {
    enum direction {
         UP,DOWN,LEFT,RIGHT
     }
-
-
-     static void MoveAllTitle(direction moveDirection) {
+        //todo move title without checking
+    static void MoveAllTitle(direction moveDirection) {
        int[][] tempTAB =  GameMatrix.getInstance().getGameMatrix();
-       tempTAB[1][1]=4;
+
+   }
 
 
-
-    }
 
     public static final class GameMatrix {
         private final int matrixSize = 4;
@@ -52,7 +50,25 @@ public class GameBoard {
             }
             return INSTANCE;
         }
-    }
+
+
+
+        void addRandomTitle(){
+            //todo check free title
+
+            int Xrnd = (int) (Math.random()*GameMatrix.getInstance().matrixSize );
+            int Yrnd = (int) (Math.random()*GameMatrix.getInstance().matrixSize );
+            int n = (int) (Math.random()*4 + 1);
+            int value;
+            if(n <= 3){
+                value = 2;
+            }
+            else {
+                value = 4;
+            }
+            GameMatrix.getInstance().gameMatrix[Xrnd][Yrnd] = value;
+        }
+   }
 
     public static StackPane AddRectangleWithText(int number) {
         if (number == 0) {
