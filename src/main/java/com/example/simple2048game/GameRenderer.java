@@ -49,7 +49,7 @@ public class GameRenderer extends Application {
         GameBoard.GameMatrix.getInstance().addRandomTitle();
         for (int i = 0; i < GameBoard.GameMatrix.getInstance().getMatrixSize(); i++) {
             for (int k = 0; k < GameBoard.GameMatrix.getInstance().getMatrixSize(); k++) {
-                area.add(GameBoard.AddRectangleWithText(tab[i][k]), i, k);
+                area.add(GameBoard.GameMatrix.AddRectangleWithText(tab[i][k]), i, k);
             }
         }
     }
