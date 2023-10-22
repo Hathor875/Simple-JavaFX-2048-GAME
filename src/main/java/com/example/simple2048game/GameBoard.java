@@ -21,13 +21,37 @@ public class GameBoard {
     }
 
     //todo move title without checking
-    static void MoveAllTitle(direction moveDirection) {
-        int[][] tempTAB = GameMatrix.getInstance().getGameMatrix();
 
-    }
 
 
     public static final class GameMatrix {
+        static void MoveAllTitle(direction moveDirection) {
+            int xChange = 0;
+            int yChange = 0;
+
+            switch (moveDirection){
+                case UP -> yChange = -1;
+                case DOWN -> yChange = 1;
+                case LEFT -> xChange = -1;
+                case RIGHT -> xChange = 1;
+            }
+
+            int[][] currentMatrix = GameMatrix.getInstance().gameMatrix;
+            int matrixSize = GameMatrix.getInstance().getMatrixSize();
+
+            int[][] tempMatrix = new int[matrixSize][matrixSize];
+
+            for (int i = 0; i < matrixSize - 1; i++) {
+                for (int j = 0; j < matrixSize - 1; j++) {
+                    if (currentMatrix[i][j] != 0) {
+                        tempMatrix[i + xChange][j + yChange] = currentMatrix[i][j];
+                    }
+                }
+            }
+
+
+            GameMatrix.getInstance().gameMatrix = tempMatrix;
+        }
         private final int matrixSize = 4;
         private int[][] gameMatrix;
         private static volatile GameMatrix INSTANCE;
@@ -41,7 +65,7 @@ public class GameBoard {
         }
 
 
-        public GameMatrix() {
+        public  GameMatrix() {
             gameMatrix = new int[matrixSize][matrixSize];
 
         }
@@ -58,7 +82,7 @@ public class GameBoard {
             return INSTANCE;
         }
 
-        private  List<Point> findEmptyFields(int[][] matrix) {
+        public   List<Point> findEmptyFields(int[][] matrix) {
             return IntStream.range(0, matrix.length)
                     .boxed()
                     .flatMap(i -> IntStream.range(0, matrix[i].length)
@@ -66,18 +90,13 @@ public class GameBoard {
                             .mapToObj(j -> new Point(i, j)))
                     .collect(Collectors.toList());
         }
-        public class Point {
+        public static class Point {
             int x, y;
 
             Point(int x, int y) {
                 this.x = x;
                 this.y = y;
             }
-
-
-
-
-
         }
         public void addRandomTitle() {
 

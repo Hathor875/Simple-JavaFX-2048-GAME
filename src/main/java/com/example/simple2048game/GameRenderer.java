@@ -18,40 +18,46 @@ public class GameRenderer extends Application {
         area.setStyle("-fx-background-color: #e0ded7; -fx-border-color: black;");
         Scene scene = new Scene(area);
         primaryStage.setScene(scene);
-
+        GameBoard.GameMatrix.getInstance().addRandomTitle();
+        GameBoard.GameMatrix.getInstance().addRandomTitle();
         renderGameMatrix();
         area.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case UP -> {
-                    GameBoard.MoveAllTitle(GameBoard.direction.UP);
+                    GameBoard.GameMatrix.MoveAllTitle(GameBoard.direction.UP);
                     System.out.println("up");
                 }
                 case DOWN -> {
-                    GameBoard.MoveAllTitle(GameBoard.direction.DOWN);
+                    GameBoard.GameMatrix.MoveAllTitle(GameBoard.direction.DOWN);
                     System.out.println("down");
                 }
                 case LEFT -> {
-                    GameBoard.MoveAllTitle(GameBoard.direction.LEFT);
+                    GameBoard.GameMatrix.MoveAllTitle(GameBoard.direction.LEFT);
                     System.out.println("left");
                 }
                 case RIGHT -> {
-                    GameBoard.MoveAllTitle(GameBoard.direction.RIGHT);
+                    GameBoard.GameMatrix.MoveAllTitle(GameBoard.direction.RIGHT);
                     System.out.println("right");
                 }
             }
+            clearGameMatrix();
+            renderGameMatrix();
         });
         primaryStage.show();
         area.requestFocus();
     }
     public void renderGameMatrix() {
         int[][] tab = GameBoard.GameMatrix.getInstance().getGameMatrix();
-        GameBoard.GameMatrix.getInstance().addRandomTitle();
-        GameBoard.GameMatrix.getInstance().addRandomTitle();
+
         for (int i = 0; i < GameBoard.GameMatrix.getInstance().getMatrixSize(); i++) {
             for (int k = 0; k < GameBoard.GameMatrix.getInstance().getMatrixSize(); k++) {
                 area.add(GameBoard.GameMatrix.AddRectangleWithText(tab[i][k]), i, k);
             }
         }
+        }
+
+    public void clearGameMatrix() {
+        area.getChildren().clear();
     }
 
     public static void main(String[] args) {
