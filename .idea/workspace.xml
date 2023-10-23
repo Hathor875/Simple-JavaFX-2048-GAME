@@ -8,7 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d7e56632-011a-4461-a553-d3ad71a2a6ff" name="Changes" comment="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698090558234</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning">
+      <option name="closed" value="true" />
+      <created>1698091501276</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1698091501276</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
