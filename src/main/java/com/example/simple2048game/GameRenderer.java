@@ -9,7 +9,6 @@ public class GameRenderer extends Application {
     private static GridPane area;
     @Override
     public void start(Stage primaryStage) {
-
         primaryStage.setTitle("2048 GAME");
         area = new GridPane();
         area.setHgap(3);
@@ -18,13 +17,7 @@ public class GameRenderer extends Application {
         area.setStyle("-fx-background-color: #e0ded7; -fx-border-color: black;");
         Scene scene = new Scene(area);
         primaryStage.setScene(scene);
-        boolean startFlag = true;
-        if(startFlag){
-            GameBoard.GameMatrix.getInstance().addRandomTitle();
-            startFlag = false;
-        }
-
-
+        GameBoard.GameMatrix.getInstance().addRandomTitle();
         GameBoard.GameMatrix.getInstance().addRandomTitle();
         renderGameMatrix();
         area.setOnKeyPressed(event -> {
@@ -62,9 +55,8 @@ public class GameRenderer extends Application {
                 area.add(GameBoard.GameMatrix.AddRectangleWithText(tab[k][i]), i, k);
             }
         }
-        }
-
-   static public void clearGameMatrix() {
+    }
+    static public void clearGameMatrix() {
         area.getChildren().clear();
     }
 

@@ -154,7 +154,8 @@ public class GameBoard {
                     .collect(Collectors.toList());
         }
         public static class Point {
-            int x, y;
+            int x;
+            int y;
 
             Point(int x, int y) {
                 this.x = x;
@@ -170,9 +171,9 @@ public class GameBoard {
             }
             int rnd = (int) (Math.random() * tempFreeTitle.size());
 
-            int n = (int) (Math.random() * 4 + 1);
+            int n = (int) (Math.random() * 10);
             int value;
-            if (n <= 3) {
+            if (n <= 8) {
                 value = 2;
             } else {
                 value = 4;
@@ -187,7 +188,11 @@ public class GameBoard {
                 stackPane.getChildren().addAll(rectangle);
                 return stackPane;
             } else {
-                Rectangle rectangle = new Rectangle(RECTANGLE_SIZE, RECTANGLE_SIZE, Color.rgb(255 -(int)Math.sqrt(number)*10,255,255));
+                int red = Math.max(0, Math.min(255, 255 - number*8));
+                int green = Math.max(0, Math.min(255, 228 + number));
+                int blue = Math.max(0, Math.min(255, 200 + number*3));
+
+                Rectangle rectangle = new Rectangle(RECTANGLE_SIZE, RECTANGLE_SIZE, Color.rgb(red, green, blue));
                 Text text = new Text(String.valueOf(number));
                 text.setFont(font("Verdana", FontWeight.BOLD, 20));
                 StackPane stackPane = new StackPane();
