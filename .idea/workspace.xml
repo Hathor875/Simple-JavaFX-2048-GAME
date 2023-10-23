@@ -7,10 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7e56632-011a-4461-a553-d3ad71a2a6ff" name="Changes" comment="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning!">
+    <list default="true" id="d7e56632-011a-4461-a553-d3ad71a2a6ff" name="Changes" comment="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning!&#10;move to none module and change maven config">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +28,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2WiQlLQIYuYd3TDDzcJq65flpxh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -40,10 +43,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "last_opened_file_path": "/home/xeon/Desktop/git/game2048",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.6091954",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -57,9 +61,9 @@
       <command value="mvn compile exec:java - Dexec.mainClass=com.example.simple2048.GameRenderer" />
       <command value="mvn clean javafx:run" />
       <command value="mvn compile exec:java -Dexec.mainClass=com.example.simple2048.GameRenderer" />
-      <command value="mvn compile exec:java -Dexec.mainClass=com.example.simple2048game.GameRenderer" />
       <command value="mvn clean package" />
       <command value="mvn install" />
+      <command value="mvn compile exec:java -Dexec.mainClass=com.example.simple2048game.GameRenderer" />
       <command value="mvn clean install" />
     </option>
   </component>
@@ -177,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698093586680</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning!&#10;move to none module and change maven config">
+      <option name="closed" value="true" />
+      <created>1698095911775</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1698095911775</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -188,7 +200,8 @@
     <MESSAGE value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score" />
     <MESSAGE value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning" />
     <MESSAGE value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning!" />
-    <option name="LAST_COMMIT_MESSAGE" value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning!" />
+    <MESSAGE value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning!&#10;move to none module and change maven config" />
+    <option name="LAST_COMMIT_MESSAGE" value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning!&#10;move to none module and change maven config" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -200,12 +213,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression=" private int[][] gameMatrix;" />
-        <watch expression="gameMatrix" />
-        <watch expression="1.0-(double) number/2048" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>
