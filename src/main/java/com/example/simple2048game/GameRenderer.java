@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 
 public class GameRenderer extends Application {
-    private GridPane area;
+    private static GridPane area;
     @Override
     public void start(Stage primaryStage) {
 
@@ -64,8 +64,16 @@ public class GameRenderer extends Application {
         }
         }
 
-    public void clearGameMatrix() {
+   static public void clearGameMatrix() {
         area.getChildren().clear();
+    }
+
+
+    public static void gameOver(){
+        clearGameMatrix();
+        System.out.println("lose");
+
+        //todo add game over
     }
 
     public static void main(String[] args) {

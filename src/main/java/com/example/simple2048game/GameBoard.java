@@ -171,6 +171,9 @@ public class GameBoard {
 
 
             List<Point> tempFreeTitle = findEmptyFields(GameMatrix.getInstance().getGameMatrix());
+            if(tempFreeTitle.isEmpty()){
+                GameRenderer.gameOver();
+            }
             int rnd = (int) (Math.random() * tempFreeTitle.size());
 
             int n = (int) (Math.random() * 4 + 1);
