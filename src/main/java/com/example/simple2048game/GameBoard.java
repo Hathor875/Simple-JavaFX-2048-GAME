@@ -20,31 +20,100 @@ public class GameBoard {
         UP, DOWN, LEFT, RIGHT
     }
 
-    //todo move title without checking
+
 
 
 
     public static final class GameMatrix {
-        static void MoveAllTitle(direction moveDirection) {
-            int xChange = 0;
-            int yChange = 0;
 
-            switch (moveDirection){
-                case UP -> yChange = -1;
-                case DOWN -> yChange = 1;
-                case LEFT -> xChange = -1;
-                case RIGHT -> xChange = 1;
+        private static int[] moveAndMergeLeft(int[] row) {
+            int[] newRow = new int[row.length];
+            int newIndex = 0;
+
+            for (int i = 0; i < row.length; i++) {
+                if (row[i] != 0) {  // Jeśli kafelek nie jest pusty
+                    if (newRow[newIndex] == 0) {  // Jeśli docelowe miejsce jest puste
+                        newRow[newIndex] = row[i];
+                    } else if (newRow[newIndex] == row[i]) {  // Jeśli kafelki mają tę samą wartość
+                        newRow[newIndex] *= 2;  // Łącz kafelki
+                        newIndex++;  // Przesuń wskaźnik na następne miejsce
+                    } else {
+                        newIndex++;  // Przesuń wskaźnik na następne miejsce
+                        newRow[newIndex] = row[i];  // Umieść kafelek
+                    }
+                }
             }
+            return newRow;
+        }
+
+
+        private static int[] moveAndMergeRight(int[] row) {
+            int[] newRow = new int[row.length];
+            int newIndex = row.length - 1;
+
+            for (int i = row.length - 1; i >= 0; i--) {
+                if (row[i] != 0) {
+                    if (newRow[newIndex] == 0) {
+                        newRow[newIndex] = row[i];
+                    } else if (newRow[newIndex] == row[i]) {
+                        newRow[newIndex] *= 2;
+                        newIndex--;
+                    } else {
+                        newIndex--;
+                        newRow[newIndex] = row[i];
+                    }
+                }
+            }
+            return newRow;
+        }
+
+        private static int[] moveAndMergeUp(int[] col) {
+            return moveAndMergeLeft(col);
+        }
+
+        private static int[] moveAndMergeDown(int[] col) {
+            return moveAndMergeRight(col);
+        }
+
+        static void MoveAllTitle(direction moveDirection) {
+
 
             int[][] currentMatrix = GameMatrix.getInstance().gameMatrix;
             int matrixSize = GameMatrix.getInstance().getMatrixSize();
 
             int[][] tempMatrix = new int[matrixSize][matrixSize];
 
-            for (int i = 0; i < matrixSize - 1; i++) {
-                for (int j = 0; j < matrixSize - 1; j++) {
-                    if (currentMatrix[i][j] != 0) {
-                        tempMatrix[i + xChange][j + yChange] = currentMatrix[i][j];
+
+            switch (moveDirection) {
+                case LEFT, RIGHT -> {
+                    for (int i = 0; i < matrixSize; i++) {
+                        int[] row = currentMatrix[i].clone();
+
+                        if (moveDirection == direction.LEFT) {
+                            row = moveAndMergeLeft(row);
+                        } else {
+                            row = moveAndMergeRight(row);
+                        }
+
+                        tempMatrix[i] = row;
+                    }
+                }
+                case UP, DOWN -> {
+                    for (int j = 0; j < matrixSize; j++) {
+                        int[] col = new int[matrixSize];
+                        for (int i = 0; i < matrixSize; i++) {
+                            col[i] = currentMatrix[i][j];
+                        }
+
+                        if (moveDirection == direction.UP) {
+                            col = moveAndMergeLeft(col);
+                        } else {
+                            col = moveAndMergeRight(col);
+                        }
+
+                        for (int i = 0; i < matrixSize; i++) {
+                            tempMatrix[i][j] = col[i];
+                        }
                     }
                 }
             }
@@ -102,7 +171,7 @@ public class GameBoard {
 
 
             List<Point> tempFreeTitle = findEmptyFields(GameMatrix.getInstance().getGameMatrix());
-            int rnd = (int) (Math.random() * GameMatrix.getInstance().matrixSize * 2);
+            int rnd = (int) (Math.random() * tempFreeTitle.size());
 
             int n = (int) (Math.random() * 4 + 1);
             int value;

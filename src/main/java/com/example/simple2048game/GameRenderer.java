@@ -18,7 +18,13 @@ public class GameRenderer extends Application {
         area.setStyle("-fx-background-color: #e0ded7; -fx-border-color: black;");
         Scene scene = new Scene(area);
         primaryStage.setScene(scene);
-        GameBoard.GameMatrix.getInstance().addRandomTitle();
+        boolean startFlag = true;
+        if(startFlag){
+            GameBoard.GameMatrix.getInstance().addRandomTitle();
+            startFlag = false;
+        }
+
+
         GameBoard.GameMatrix.getInstance().addRandomTitle();
         renderGameMatrix();
         area.setOnKeyPressed(event -> {
@@ -40,7 +46,9 @@ public class GameRenderer extends Application {
                     System.out.println("right");
                 }
             }
+
             clearGameMatrix();
+            GameBoard.GameMatrix.getInstance().addRandomTitle();
             renderGameMatrix();
         });
         primaryStage.show();
@@ -51,7 +59,7 @@ public class GameRenderer extends Application {
 
         for (int i = 0; i < GameBoard.GameMatrix.getInstance().getMatrixSize(); i++) {
             for (int k = 0; k < GameBoard.GameMatrix.getInstance().getMatrixSize(); k++) {
-                area.add(GameBoard.GameMatrix.AddRectangleWithText(tab[i][k]), i, k);
+                area.add(GameBoard.GameMatrix.AddRectangleWithText(tab[k][i]), i, k);
             }
         }
         }
