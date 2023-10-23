@@ -30,16 +30,16 @@ public class GameBoard {
             int[] newRow = new int[row.length];
             int newIndex = 0;
 
-            for (int i = 0; i < row.length; i++) {
-                if (row[i] != 0) {  // Jeśli kafelek nie jest pusty
-                    if (newRow[newIndex] == 0) {  // Jeśli docelowe miejsce jest puste
-                        newRow[newIndex] = row[i];
-                    } else if (newRow[newIndex] == row[i]) {  // Jeśli kafelki mają tę samą wartość
-                        newRow[newIndex] *= 2;  // Łącz kafelki
-                        newIndex++;  // Przesuń wskaźnik na następne miejsce
+            for (int j : row) {
+                if (j != 0) {
+                    if (newRow[newIndex] == 0) {
+                        newRow[newIndex] = j;
+                    } else if (newRow[newIndex] == j) {
+                        newRow[newIndex] *= 2;
+                        newIndex++;
                     } else {
-                        newIndex++;  // Przesuń wskaźnik na następne miejsce
-                        newRow[newIndex] = row[i];  // Umieść kafelek
+                        newIndex++;
+                        newRow[newIndex] = j;
                     }
                 }
             }
@@ -67,13 +67,7 @@ public class GameBoard {
             return newRow;
         }
 
-        private static int[] moveAndMergeUp(int[] col) {
-            return moveAndMergeLeft(col);
-        }
 
-        private static int[] moveAndMergeDown(int[] col) {
-            return moveAndMergeRight(col);
-        }
 
         static void MoveAllTitle(direction moveDirection) {
 
