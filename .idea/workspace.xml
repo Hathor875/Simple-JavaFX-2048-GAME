@@ -7,8 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7e56632-011a-4461-a553-d3ad71a2a6ff" name="Changes" comment="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning">
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+    <list default="true" id="d7e56632-011a-4461-a553-d3ad71a2a6ff" name="Changes" comment="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning!">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,9 +40,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "last_opened_file_path": "/home/xeon/Desktop/git/game2048",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.6091954",
     "run.code.analysis.last.selected.profile": "pProject Default"
   }
 }]]></component>
@@ -51,11 +53,14 @@
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
-      <command value="mvn clean install" />
       <command value="mvn compile execl:java - Dexec.mainClass=com.example.simple2048.GameRenderer" />
       <command value="mvn compile exec:java - Dexec.mainClass=com.example.simple2048.GameRenderer" />
+      <command value="mvn clean javafx:run" />
       <command value="mvn compile exec:java -Dexec.mainClass=com.example.simple2048.GameRenderer" />
       <command value="mvn compile exec:java -Dexec.mainClass=com.example.simple2048game.GameRenderer" />
+      <command value="mvn clean package" />
+      <command value="mvn install" />
+      <command value="mvn clean install" />
     </option>
   </component>
   <component name="RunManager">
@@ -156,7 +161,23 @@
       <option name="project" value="LOCAL" />
       <updated>1698091501276</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning">
+      <option name="closed" value="true" />
+      <created>1698091539279</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1698091539279</updated>
+    </task>
+    <task id="LOCAL-00009" summary="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning!">
+      <option name="closed" value="true" />
+      <created>1698093586680</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1698093586680</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -166,7 +187,8 @@
     <MESSAGE value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add title move without overflow and free check" />
     <MESSAGE value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score" />
     <MESSAGE value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning" />
-    <option name="LAST_COMMIT_MESSAGE" value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning" />
+    <MESSAGE value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning!" />
+    <option name="LAST_COMMIT_MESSAGE" value="WARNING: Unsupported JavaFX configuration: classes were loaded from 'unnamed module @1c3fbdc9'&#10;&#10;add working color &#10;todo gameover win and score&#10;fix warning!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
