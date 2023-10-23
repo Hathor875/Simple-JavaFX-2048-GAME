@@ -154,8 +154,8 @@ public class GameBoard {
                     .collect(Collectors.toList());
         }
         public static class Point {
-            private int x;
-           private int y;
+           final private int x;
+           final private int y;
 
             Point(int x, int y) {
                 this.x = x;
