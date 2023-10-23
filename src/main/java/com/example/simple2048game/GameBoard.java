@@ -193,7 +193,7 @@ public class GameBoard {
                 stackPane.getChildren().addAll(rectangle);
                 return stackPane;
             } else {
-                Rectangle rectangle = new Rectangle(RECTANGLE_SIZE, RECTANGLE_SIZE, Color.BISQUE);
+                Rectangle rectangle = new Rectangle(RECTANGLE_SIZE, RECTANGLE_SIZE, Color.rgb(255 -(int)Math.sqrt(number)*10,255,255));
                 Text text = new Text(String.valueOf(number));
                 text.setFont(font("Verdana", FontWeight.BOLD, 20));
                 StackPane stackPane = new StackPane();
