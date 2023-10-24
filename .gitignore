@@ -11,6 +11,7 @@ target/
 *.iws
 *.iml
 *.ipr
+.idea
 
 ### Eclipse ###
 .apt_generated
@@ -36,3 +37,12 @@ build/
 
 ### Mac OS ###
 .DS_Store
+/.idea/compiler.xml
+/.idea/encodings.xml
+/.idea/game2048.iml
+/.idea/jarRepositories.xml
+/.idea/misc.xml
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
+/.idea/compiler.xml
