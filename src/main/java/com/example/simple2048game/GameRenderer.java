@@ -1,8 +1,10 @@
 package com.example.simple2048game;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+
 
 
 
@@ -16,6 +18,7 @@ public class GameRenderer extends Application {
         area.setVgap(3);
         area.setPrefSize(GameBoard.PANE_SIZE, GameBoard.PANE_SIZE);
         area.setStyle("-fx-background-color: #e0ded7; -fx-border-color: black;");
+        primaryStage.getIcons().add(new Image("/icon2048.jpg"));
         Scene scene = new Scene(area);
         primaryStage.setScene(scene);
         GameBoardOperation gameBoardOperation = new GameBoardOperation();
