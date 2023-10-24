@@ -4,7 +4,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-
+/*
+!Jak najmniej używania metod statycznych
+!Metody, które nie są wykorzystywane poza klasą muszą być private
+!Wszystkie zmienne które są na całą klasę to na początku dajesz
+!Staraj się trzymać, żeby dana klasa dotyczyła tylko jednego elementu, to znaczy jeżeli jest GameRenderer,
+ to on tylko renderuje mapę, ale jej nie odpala*/
 public class GameRenderer extends Application {
     private static GridPane area;
     @Override
@@ -17,31 +22,25 @@ public class GameRenderer extends Application {
         area.setStyle("-fx-background-color: #e0ded7; -fx-border-color: black;");
         Scene scene = new Scene(area);
         primaryStage.setScene(scene);
-        GameBoard.GameMatrix.getInstance().addRandomTitle();
-        GameBoard.GameMatrix.getInstance().addRandomTitle();
+        GameBoardOperation.addRandomTitle();
+        GameBoardOperation.addRandomTitle();
         renderGameMatrix();
         area.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-                case UP -> {
-                    GameBoard.GameMatrix.MoveAllTitle(GameBoard.direction.UP);
-                    System.out.println("up");
-                }
-                case DOWN -> {
-                    GameBoard.GameMatrix.MoveAllTitle(GameBoard.direction.DOWN);
-                    System.out.println("down");
-                }
-                case LEFT -> {
-                    GameBoard.GameMatrix.MoveAllTitle(GameBoard.direction.LEFT);
-                    System.out.println("left");
-                }
-                case RIGHT -> {
-                    GameBoard.GameMatrix.MoveAllTitle(GameBoard.direction.RIGHT);
-                    System.out.println("right");
-                }
-            }
+                case UP ->
+                    GameBoardOperation.moveAllTitle(GameBoard.Direction.UP);
+                case DOWN ->
+                    GameBoardOperation.moveAllTitle(GameBoard.Direction.DOWN);
+                case LEFT ->
+                    GameBoardOperation.moveAllTitle(GameBoard.Direction.LEFT);
 
+                case RIGHT ->
+                    GameBoardOperation.moveAllTitle(GameBoard.Direction.RIGHT);
+
+                default -> throw new IllegalStateException("Unexpected value: " + event.getCode());
+            }
             clearGameMatrix();
-            GameBoard.GameMatrix.getInstance().addRandomTitle();
+            GameBoardOperation.addRandomTitle();
             renderGameMatrix();
         });
         primaryStage.show();
@@ -52,7 +51,7 @@ public class GameRenderer extends Application {
 
         for (int i = 0; i < GameBoard.GameMatrix.getInstance().getMatrixSize(); i++) {
             for (int k = 0; k < GameBoard.GameMatrix.getInstance().getMatrixSize(); k++) {
-                area.add(GameBoard.GameMatrix.AddRectangleWithText(tab[k][i]), i, k);
+                area.add(GameBoardOperation.addRectangleWithText(tab[k][i]), i, k);
             }
         }
     }
@@ -61,10 +60,9 @@ public class GameRenderer extends Application {
     }
 
 
-    public static void gameOver(){
+    static public void gameOver(){
         clearGameMatrix();
         System.out.println("lose");
-
         //todo add game over
     }
 
