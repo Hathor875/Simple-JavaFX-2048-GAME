@@ -1,22 +1,19 @@
 package com.example.simple2048game;
 
-import com.example.simple2048game.GameBoard.GameMatrix;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static javafx.scene.text.Font.font;
 
 public class GameBoardOperation {
-    static int[] moveAndMergeLeft(int[] row) {
+     int[] moveAndMergeLeft(int[] row) {
         int[] newRow = new int[row.length];
         int newIndex = 0;
 
@@ -56,25 +53,34 @@ public class GameBoardOperation {
         return newRow;
     }
 
-    static void moveAllTitle(GameBoard.Direction moveDirection) {
-        int[][] currentMatrix = GameBoard.GameMatrix.getInstance().getGameMatrix();
-        int matrixSize = GameBoard.GameMatrix.getInstance().getMatrixSize();
+
+    //todo refactor in progress
+    private int [][] moveUpDown(GameBoard.Direction moveDirection,int[][] currentMatrix,int matrixSize){
         int[][] tempMatrix = new int[matrixSize][matrixSize];
+            for (int i = 0; i < matrixSize; i++) {
+                int[] row = currentMatrix[i].clone();
 
-        switch (moveDirection) {
-            case LEFT, RIGHT -> {
-                for (int i = 0; i < matrixSize; i++) {
-                    int[] row = currentMatrix[i].clone();
-
-                    if (moveDirection == GameBoard.Direction.LEFT) {
-                        row = moveAndMergeLeft(row);
-                    } else {
-                        row = moveAndMergeRight(row);
-                    }
-
-                    tempMatrix[i] = row;
+                if (moveDirection == GameBoard.Direction.LEFT) {
+                    row = moveAndMergeLeft(row);
+                } else {
+                    row = moveAndMergeRight(row);
                 }
+
+                tempMatrix[i] = row;
             }
+        return  tempMatrix;
+    }
+        
+    
+    
+    void moveAllTitles(GameBoard.Direction moveDirection) {
+        int[][] currentMatrix = GameMatrix.getInstance().getGameMatrix();
+        int matrixSize = GameMatrix.getInstance().getMatrixSize();
+        int[][] tempMatrix = new int[matrixSize][matrixSize];
+        //todo error!
+        //swap left,right and up,down
+        switch (moveDirection) {
+            case LEFT, RIGHT -> tempMatrix = moveUpDown(moveDirection,currentMatrix,matrixSize);
             case UP, DOWN -> {
                 for (int j = 0; j < matrixSize; j++) {
                     int[] col = new int[matrixSize];
@@ -95,7 +101,6 @@ public class GameBoardOperation {
             }
         }
         GameMatrix.getInstance().setGameMatrix(tempMatrix);
-
     }
 
 
@@ -108,7 +113,7 @@ public class GameBoardOperation {
                 .collect(Collectors.toList());
     }
 
-    public static void addRandomTitle() {
+    public void addRandomTitle() {
         List<GameMatrix.Point> tempFreeTitle = findEmptyFields(GameMatrix.getInstance().getGameMatrix());
         if(tempFreeTitle.isEmpty()){
             GameRenderer.gameOver();
@@ -124,17 +129,15 @@ public class GameBoardOperation {
         GameMatrix.getInstance().getGameMatrix()[tempFreeTitle.get(rnd).x()][tempFreeTitle.get(rnd).y()] = value;
     }
 
-    static StackPane addRectangleWithText(int number) { //todo add color change for value
+     StackPane addRectangleWithText(int number) { //todo add color change for value
         if (number == 0) {
             Rectangle rectangle = new Rectangle(GameBoard.RECTANGLE_SIZE, GameBoard.RECTANGLE_SIZE, Color.web("#edebe6"));
             StackPane stackPane = new StackPane();
             stackPane.getChildren().addAll(rectangle);
             return stackPane;
         } else {
-
             Color tileColor = TileColors.getColorForValue(number);
             Rectangle rectangle = new Rectangle(GameBoard.RECTANGLE_SIZE, GameBoard.RECTANGLE_SIZE, tileColor);
-
             Text text = new Text(String.valueOf(number));
             text.setFont(font("Verdana", FontWeight.BOLD, 20));
             StackPane stackPane = new StackPane();
@@ -143,30 +146,5 @@ public class GameBoardOperation {
         }
     }
 
-
-    public class TileColors {
-        private static final Map<Integer, Color> colors = new HashMap<>();
-
-        static {
-            colors.put(0, Color.web("#f2e6ff"));
-            colors.put(2, Color.web("#ffcccb"));
-            colors.put(4, Color.web("#ffeb99"));
-            colors.put(8, Color.web("#99e6e6"));
-            colors.put(16, Color.web("#99ff99"));
-            colors.put(32, Color.web("#80ff1a"));
-            colors.put(64, Color.web("#4da6ff"));
-            colors.put(128, Color.web("#ff80b3"));
-            colors.put(256, Color.web("#ff9933"));
-            colors.put(512, Color.web("#cc99ff"));
-            colors.put(1024, Color.web("#00cc99"));
-            colors.put(2048, Color.web("#ff3300"));
-
-
-        }
-
-        public static Color getColorForValue(int value) {
-            return colors.getOrDefault(value, Color.web("#fcf2fc")); //
-        }
-    }
 
 }

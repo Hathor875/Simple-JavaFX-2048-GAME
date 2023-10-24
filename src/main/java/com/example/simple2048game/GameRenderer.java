@@ -8,7 +8,8 @@ import javafx.stage.Stage;
 !Jak najmniej używania metod statycznych
 !Metody, które nie są wykorzystywane poza klasą muszą być private
 !Wszystkie zmienne które są na całą klasę to na początku dajesz
-!Staraj się trzymać, żeby dana klasa dotyczyła tylko jednego elementu, to znaczy jeżeli jest GameRenderer,
+!Staraj się t
+rzymać, żeby dana klasa dotyczyła tylko jednego elementu, to znaczy jeżeli jest GameRenderer,
  to on tylko renderuje mapę, ale jej nie odpala*/
 public class GameRenderer extends Application {
     private static GridPane area;
@@ -22,40 +23,44 @@ public class GameRenderer extends Application {
         area.setStyle("-fx-background-color: #e0ded7; -fx-border-color: black;");
         Scene scene = new Scene(area);
         primaryStage.setScene(scene);
-        GameBoardOperation.addRandomTitle();
-        GameBoardOperation.addRandomTitle();
+        GameBoardOperation gameBoardOperation = new GameBoardOperation();
+        for (int i = 0; i < 2; i++) {
+            gameBoardOperation.addRandomTitle();
+        }
+
         renderGameMatrix();
         area.setOnKeyPressed(event -> {
             switch (event.getCode()) {
+
                 case UP ->
-                    GameBoardOperation.moveAllTitle(GameBoard.Direction.UP);
+                     new GameBoardOperation().moveAllTitles(GameBoard.Direction.UP);
                 case DOWN ->
-                    GameBoardOperation.moveAllTitle(GameBoard.Direction.DOWN);
+                        new GameBoardOperation().moveAllTitles(GameBoard.Direction.DOWN);
                 case LEFT ->
-                    GameBoardOperation.moveAllTitle(GameBoard.Direction.LEFT);
+                        new GameBoardOperation().moveAllTitles(GameBoard.Direction.LEFT);
 
                 case RIGHT ->
-                    GameBoardOperation.moveAllTitle(GameBoard.Direction.RIGHT);
+                        new GameBoardOperation().moveAllTitles(GameBoard.Direction.RIGHT);
 
                 default -> throw new IllegalStateException("Unexpected value: " + event.getCode());
             }
             clearGameMatrix();
-            GameBoardOperation.addRandomTitle();
+           gameBoardOperation.addRandomTitle();
             renderGameMatrix();
         });
         primaryStage.show();
         area.requestFocus();
     }
     public void renderGameMatrix() {
-        int[][] tab = GameBoard.GameMatrix.getInstance().getGameMatrix();
+        int[][] tab = GameMatrix.getInstance().getGameMatrix();
 
-        for (int i = 0; i < GameBoard.GameMatrix.getInstance().getMatrixSize(); i++) {
-            for (int k = 0; k < GameBoard.GameMatrix.getInstance().getMatrixSize(); k++) {
-                area.add(GameBoardOperation.addRectangleWithText(tab[k][i]), i, k);
+        for (int i = 0; i < GameMatrix.getInstance().getMatrixSize(); i++) {
+            for (int k = 0; k < GameMatrix.getInstance().getMatrixSize(); k++) {
+                area.add(new GameBoardOperation().addRectangleWithText(tab[k][i]), i, k);
             }
         }
     }
-    static public void clearGameMatrix() {
+    static private void clearGameMatrix() {
         area.getChildren().clear();
     }
 
