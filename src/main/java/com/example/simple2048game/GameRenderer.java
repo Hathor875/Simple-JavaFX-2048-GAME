@@ -4,13 +4,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-/*
-!Jak najmniej używania metod statycznych
-!Metody, które nie są wykorzystywane poza klasą muszą być private
-!Wszystkie zmienne które są na całą klasę to na początku dajesz
-!Staraj się t
-rzymać, żeby dana klasa dotyczyła tylko jednego elementu, to znaczy jeżeli jest GameRenderer,
- to on tylko renderuje mapę, ale jej nie odpala*/
+
+
 public class GameRenderer extends Application {
     private static GridPane area;
     @Override
