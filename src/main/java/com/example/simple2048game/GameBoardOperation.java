@@ -127,6 +127,7 @@ public class GameBoardOperation {
             value = 4;
         }
         GameMatrix.getInstance().getGameMatrix()[tempFreeTitle.get(rnd).x()][tempFreeTitle.get(rnd).y()] = value;
+
     }
 
      StackPane addRectangleWithText(int number) { //todo add color change for value
