@@ -3,20 +3,22 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 
 
 
 public class GameRenderer extends Application {
-    private static GridPane area;
+   public static GridPane area;
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("2048 GAME");
         area = new GridPane();
         area.setHgap(3);
         area.setVgap(3);
-        area.setPrefSize(GameBoard.PANE_SIZE, GameBoard.PANE_SIZE);
+
+        area.setPrefSize(Screen.getPrimary().getBounds().getHeight()/4,Screen.getPrimary().getBounds().getHeight()/4);
         area.setStyle("-fx-background-color: #e0ded7; -fx-border-color: black;");
         primaryStage.getIcons().add(new Image("/icon2048.jpg"));
         Scene scene = new Scene(area);

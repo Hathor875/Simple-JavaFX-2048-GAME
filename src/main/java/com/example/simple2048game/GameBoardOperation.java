@@ -138,16 +138,17 @@ public class GameBoardOperation {
         GameMatrix.getInstance().getGameMatrix()[tempFreeTitle.get(rnd).x()][tempFreeTitle.get(rnd).y()] = value;
 
     }
-
-     StackPane addRectangleWithText(int number) {
+    StackPane addRectangleWithText(int number) {
+        double sizeY = GameRenderer.area.getHeight()/4-GameRenderer.area.getHgap();
+        double sizeX = GameRenderer.area.getWidth()/4-GameRenderer.area.getHgap();
         if (number == 0) {
-            Rectangle rectangle = new Rectangle(GameBoard.RECTANGLE_SIZE, GameBoard.RECTANGLE_SIZE, Color.web("#edebe6"));
+            Rectangle rectangle = new Rectangle(sizeX,sizeY, Color.web("#edebe6"));
             StackPane stackPane = new StackPane();
             stackPane.getChildren().addAll(rectangle);
             return stackPane;
         } else {
             Color tileColor = TileColors.getColorForValue(number);
-            Rectangle rectangle = new Rectangle(GameBoard.RECTANGLE_SIZE, GameBoard.RECTANGLE_SIZE, tileColor);
+            Rectangle rectangle = new Rectangle(sizeX, sizeY, tileColor);
             Text text = new Text(String.valueOf(number));
             text.setFont(font("Verdana", FontWeight.BOLD, 20));
             StackPane stackPane = new StackPane();
