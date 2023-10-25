@@ -13,6 +13,9 @@ import java.util.stream.IntStream;
 import static javafx.scene.text.Font.font;
 
 public class GameBoardOperation {
+
+
+
      private  int[] moveAndMergeLeft(int[] row) {
         int[] newRow = new int[row.length];
         int newIndex = 0;
@@ -22,6 +25,8 @@ public class GameBoardOperation {
                 if (newRow[newIndex] == 0) {
                     newRow[newIndex] = j;
                 } else if (newRow[newIndex] == j) {
+                    Score.addToScore(newIndex*2);
+                    System.out.println(Score.getScore());
                     newRow[newIndex] *= 2;
                     newIndex++;
                 } else {
@@ -43,6 +48,8 @@ public class GameBoardOperation {
                     newRow[newIndex] = row[i];
                 } else if (newRow[newIndex] == row[i]) {
                     newRow[newIndex] *= 2;
+                    Score.addToScore(newIndex*2);
+                    System.out.println(Score.getScore());
                     newIndex--;
                 } else {
                     newIndex--;
