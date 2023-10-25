@@ -8,6 +8,7 @@ import java.util.Map;
 public final class TileColors {
     private static final Map<Integer, Color> colors = new HashMap<>();
     static {
+        /* 0 to 2048 is a title number in 2048 game */
         colors.put(0, Color.web("#f2e6ff"));
         colors.put(2, Color.web("#ffcccb"));
         colors.put(4, Color.web("#ffeb99"));

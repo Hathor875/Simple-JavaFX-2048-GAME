@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 import static javafx.scene.text.Font.font;
 
 public class GameBoardOperation {
-     int[] moveAndMergeLeft(int[] row) {
+     private  int[] moveAndMergeLeft(int[] row) {
         int[] newRow = new int[row.length];
         int newIndex = 0;
 
@@ -33,7 +33,7 @@ public class GameBoardOperation {
         return newRow;
     }
 
-    static int[] moveAndMergeRight(int[] row) {
+    private int[] moveAndMergeRight(int[] row) {
         int[] newRow = new int[row.length];
         int newIndex = row.length - 1;
 
@@ -54,8 +54,30 @@ public class GameBoardOperation {
     }
 
 
+    private int [][] moveUpOrDownAndMarge(GameBoard.Direction moveDirection, int[][] currentMatrix, int matrixSize){
+        int[][] tempMatrix = new int[matrixSize][matrixSize];
+            for (int j = 0; j < matrixSize; j++) {
+                int[] col = new int[matrixSize];
+                for (int i = 0; i < matrixSize; i++) {
+                    col[i] = currentMatrix[i][j];
+                }
+
+                if (moveDirection == GameBoard.Direction.UP) {
+                    col = moveAndMergeLeft(col);
+                } else {
+                    col = moveAndMergeRight(col);
+                }
+
+                for (int i = 0; i < matrixSize; i++) {
+                    tempMatrix[i][j] = col[i];
+                }
+            }
+        return  tempMatrix;
+    }
+
+
     //todo refactor in progress
-    private int [][] moveUpDown(GameBoard.Direction moveDirection,int[][] currentMatrix,int matrixSize){
+    private int [][] moveRightOrLeftAndMarge(GameBoard.Direction moveDirection, int[][] currentMatrix, int matrixSize){
         int[][] tempMatrix = new int[matrixSize][matrixSize];
             for (int i = 0; i < matrixSize; i++) {
                 int[] row = currentMatrix[i].clone();
@@ -65,46 +87,26 @@ public class GameBoardOperation {
                 } else {
                     row = moveAndMergeRight(row);
                 }
-
                 tempMatrix[i] = row;
             }
         return  tempMatrix;
     }
         
     
-    
     void moveAllTitles(GameBoard.Direction moveDirection) {
         int[][] currentMatrix = GameMatrix.getInstance().getGameMatrix();
         int matrixSize = GameMatrix.getInstance().getMatrixSize();
-        int[][] tempMatrix = new int[matrixSize][matrixSize];
-        //todo error!
-        //swap left,right and up,down
+        int[][] tempMatrix;
         switch (moveDirection) {
-            case LEFT, RIGHT -> tempMatrix = moveUpDown(moveDirection,currentMatrix,matrixSize);
-            case UP, DOWN -> {
-                for (int j = 0; j < matrixSize; j++) {
-                    int[] col = new int[matrixSize];
-                    for (int i = 0; i < matrixSize; i++) {
-                        col[i] = currentMatrix[i][j];
-                    }
-
-                    if (moveDirection == GameBoard.Direction.UP) {
-                        col = moveAndMergeLeft(col);
-                    } else {
-                        col = moveAndMergeRight(col);
-                    }
-
-                    for (int i = 0; i < matrixSize; i++) {
-                        tempMatrix[i][j] = col[i];
-                    }
-                }
-            }
+            case LEFT, RIGHT -> tempMatrix = moveRightOrLeftAndMarge(moveDirection,currentMatrix,matrixSize);
+            case UP, DOWN -> tempMatrix = moveUpOrDownAndMarge(moveDirection,currentMatrix,matrixSize);
+            default -> throw new IllegalStateException("Unexpected value: " + moveDirection);
         }
         GameMatrix.getInstance().setGameMatrix(tempMatrix);
     }
 
 
-    private static List<GameMatrix.Point> findEmptyFields(int[][] matrix) {
+    private  List<GameMatrix.Point> findEmptyFields(int[][] matrix) {
         return IntStream.range(0, matrix.length)
                 .boxed()
                 .flatMap(i -> IntStream.range(0, matrix[i].length)
@@ -130,7 +132,7 @@ public class GameBoardOperation {
 
     }
 
-     StackPane addRectangleWithText(int number) { //todo add color change for value
+     StackPane addRectangleWithText(int number) {
         if (number == 0) {
             Rectangle rectangle = new Rectangle(GameBoard.RECTANGLE_SIZE, GameBoard.RECTANGLE_SIZE, Color.web("#edebe6"));
             StackPane stackPane = new StackPane();
@@ -146,6 +148,4 @@ public class GameBoardOperation {
             return stackPane;
         }
     }
-
-
 }
