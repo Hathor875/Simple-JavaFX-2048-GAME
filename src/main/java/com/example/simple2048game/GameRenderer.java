@@ -15,8 +15,8 @@ public class GameRenderer extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("2048 GAME");
         area = new GridPane();
-        area.setHgap(3);
-        area.setVgap(3);
+        area.setHgap(area.getHeight()/1000);
+        area.setVgap(area.getWidth()/1000);
 
         area.setPrefSize(Screen.getPrimary().getBounds().getHeight()/4,Screen.getPrimary().getBounds().getHeight()/4);
         area.setStyle("-fx-background-color: #e0ded7; -fx-border-color: black;");
@@ -31,7 +31,6 @@ public class GameRenderer extends Application {
         renderGameMatrix();
         area.setOnKeyPressed(event -> {
             switch (event.getCode()) {
-
                 case UP ->
                      new GameBoardOperation().moveAllTitles(GameBoard.Direction.UP);
                 case DOWN ->
@@ -41,7 +40,6 @@ public class GameRenderer extends Application {
 
                 case RIGHT ->
                         new GameBoardOperation().moveAllTitles(GameBoard.Direction.RIGHT);
-
                 default -> throw new IllegalStateException("Unexpected value: " + event.getCode());
             }
             clearGameMatrix();
@@ -63,11 +61,13 @@ public class GameRenderer extends Application {
     static private void clearGameMatrix() {
         area.getChildren().clear();
     }
-
-
     static public void gameOver(){
+
         clearGameMatrix();
-        System.out.println("lose");
+        System.out.println("lose"+Score.getScore());
+        Score.setScore(0);
+        GameMatrix.getInstance().setGameMatrix(new int [GameMatrix.getInstance().getMatrixSize()][GameMatrix.getInstance().getMatrixSize()]);
+
         //todo add game over
     }
 

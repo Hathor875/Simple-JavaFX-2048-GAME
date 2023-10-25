@@ -6,7 +6,11 @@ public class Score {
         return score;
     }
 
-   public static void addToScore(int addValue){
+    public static void setScore(int score) {
+        Score.score = score;
+    }
+
+    public static void addToScore(int addValue){
        score += addValue;
    }
 }
