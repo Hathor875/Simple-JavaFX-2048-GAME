@@ -2,7 +2,9 @@ package com.example.simple2048game;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -10,18 +12,27 @@ import javafx.stage.Stage;
 
 
 public class GameRenderer extends Application {
-   public static GridPane area;
+   public static GridPane gameArea;
+   public static BorderPane mainArea;
+   public static StackPane score;
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("2048 GAME");
-        area = new GridPane();
-        area.setHgap(area.getHeight()/1000);
-        area.setVgap(area.getWidth()/1000);
 
-        area.setPrefSize(Screen.getPrimary().getBounds().getHeight()/4,Screen.getPrimary().getBounds().getHeight()/4);
-        area.setStyle("-fx-background-color: #e0ded7; -fx-border-color: black;");
+        gameArea = new GridPane();
+        mainArea = new BorderPane();
+        score = Score.renderScore();
+        mainArea.setTop(score);
+        gameArea.setHgap(gameArea.getHeight()/1000);
+        gameArea.setVgap(gameArea.getWidth()/1000);
+        
+
+        mainArea.setCenter(gameArea);
+        gameArea.setPrefSize(Screen.getPrimary().getBounds().getHeight()/4,Screen.getPrimary().getBounds().getHeight()/4);
+        gameArea.setStyle("-fx-background-color: #e0ded7; -fx-border-color: black;");
         primaryStage.getIcons().add(new Image("/icon2048.jpg"));
-        Scene scene = new Scene(area);
+        Scene scene = new Scene(mainArea);
+
         primaryStage.setScene(scene);
         GameBoardOperation gameBoardOperation = new GameBoardOperation();
         for (int i = 0; i < 2; i++) {
@@ -29,7 +40,7 @@ public class GameRenderer extends Application {
         }
 
         renderGameMatrix();
-        area.setOnKeyPressed(event -> {
+        gameArea.setOnKeyPressed(event -> {
             switch (event.getCode()) {
                 case UP ->
                      new GameBoardOperation().moveAllTitles(GameBoard.Direction.UP);
@@ -47,19 +58,20 @@ public class GameRenderer extends Application {
             renderGameMatrix();
         });
         primaryStage.show();
-        area.requestFocus();
+        gameArea.requestFocus();
     }
     public void renderGameMatrix() {
         int[][] tab = GameMatrix.getInstance().getGameMatrix();
 
+
         for (int i = 0; i < GameMatrix.getInstance().getMatrixSize(); i++) {
             for (int k = 0; k < GameMatrix.getInstance().getMatrixSize(); k++) {
-                area.add(new GameBoardOperation().addRectangleWithText(tab[k][i]), i, k);
+                gameArea.add(new GameBoardOperation().addRectangleWithText(tab[k][i]), i, k);
             }
         }
     }
     static private void clearGameMatrix() {
-        area.getChildren().clear();
+        gameArea.getChildren().clear();
     }
     static public void gameOver(){
 
