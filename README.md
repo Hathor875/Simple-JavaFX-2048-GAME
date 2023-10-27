@@ -20,7 +20,7 @@ The project is currently under development and is not yet ready for full use. Ho
 
 ! Ensure you have the necessary tools installed: Java (version 17 or newer) and Maven.
 Clone this repository:
-git clone https://github.com/your-username/Simple-2048-Game.git
+git clone https://github.com/Hathor875/Simple-JavaFX-2048-GAME
 Navigate to the project directory:
 cd Simple-2048-Game
 Run the game using Maven:
