@@ -25,8 +25,8 @@ public class GameBoardOperation {
                 if (newRow[newIndex] == 0) {
                     newRow[newIndex] = j;
                 } else if (newRow[newIndex] == j) {
-                    Score.addToScore(newIndex*2);
-                    System.out.println(Score.getScore());
+                    Score.score += newRow[newIndex];
+                    Score.scoreText.setText("Wynik: " + Score.score);
                     newRow[newIndex] *= 2;
                     newIndex++;
                 } else {
@@ -48,8 +48,8 @@ public class GameBoardOperation {
                     newRow[newIndex] = row[i];
                 } else if (newRow[newIndex] == row[i]) {
                     newRow[newIndex] *= 2;
-                    Score.addToScore(newIndex*2);
-                    System.out.println(Score.getScore());
+                    Score.score += newRow[newIndex];
+                    Score.scoreText.setText("Wynik: " + Score.score);
                     newIndex--;
                 } else {
                     newIndex--;
@@ -139,8 +139,8 @@ public class GameBoardOperation {
 
     }
     StackPane addRectangleWithText(int number) {
-        double sizeY = GameRenderer.area.getHeight()/4-GameRenderer.area.getHgap();
-        double sizeX = GameRenderer.area.getWidth()/4-GameRenderer.area.getHgap();
+        double sizeY = 80;
+        double sizeX = 80;
         if (number == 0) {
             Rectangle rectangle = new Rectangle(sizeX,sizeY, Color.web("#edebe6"));
             StackPane stackPane = new StackPane();
