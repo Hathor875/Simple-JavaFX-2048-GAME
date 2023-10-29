@@ -6,10 +6,11 @@ import javafx.scene.text.Text;
 
 import static javafx.scene.text.Font.font;
 
+
 public class Score {
     static int score = 0;
-    public static Text scoreText = new Text("Wynik: " + score);
-    private static StackPane scoreContainer = new StackPane(scoreText);
+    public static Text scoreText = new Text("Score: " + score);
+    private static final StackPane scoreContainer = new StackPane(scoreText);
 
     public static int getScore() {
         return score;
@@ -20,17 +21,13 @@ public class Score {
         updateScoreText();
     }
 
-    public static void addToScore(int addValue) {
-        score += addValue;
-        updateScoreText();
-    }
-
     private static void updateScoreText() {
-        scoreText.setText("Wynik: " + score);
+        scoreText.setText("Score:  " + score);
     }
 
     public static StackPane renderScore() {
-        scoreText.setText("Wynik: " + score);
-        return scoreContainer;  // zwracaj istniejący kontener
+        scoreText.setText("Score: " + score);
+        scoreText.setFont(font("Verdana", FontWeight.BOLD, 16));
+        return scoreContainer;
     }
 }

@@ -150,7 +150,7 @@ public class GameBoardOperation {
             Color tileColor = TileColors.getColorForValue(number);
             Rectangle rectangle = new Rectangle(sizeX, sizeY, tileColor);
             Text text = new Text(String.valueOf(number));
-            text.setFont(font("Verdana", FontWeight.BOLD, 20));
+            text.setFont(font("Verdana", FontWeight.BOLD, 30));
             StackPane stackPane = new StackPane();
             stackPane.getChildren().addAll(rectangle, text);
             return stackPane;

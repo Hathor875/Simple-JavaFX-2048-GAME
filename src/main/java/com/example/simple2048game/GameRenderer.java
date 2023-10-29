@@ -2,9 +2,11 @@ package com.example.simple2048game;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -18,21 +20,22 @@ public class GameRenderer extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("2048 GAME");
-
         gameArea = new GridPane();
         mainArea = new BorderPane();
         score = Score.renderScore();
         mainArea.setTop(score);
-        gameArea.setHgap(gameArea.getHeight()/1000);
-        gameArea.setVgap(gameArea.getWidth()/1000);
-        
-
+        score.setBackground(Background.fill(Color.BISQUE));
+        double screenHeight = Screen.getPrimary().getBounds().getHeight();
+        double screenWidth = Screen.getPrimary().getBounds().getWidth();
+        gameArea.setHgap(screenHeight/1000);
+        gameArea.setVgap(screenWidth/1000);
         mainArea.setCenter(gameArea);
         gameArea.setPrefSize(Screen.getPrimary().getBounds().getHeight()/4,Screen.getPrimary().getBounds().getHeight()/4);
         gameArea.setStyle("-fx-background-color: #e0ded7; -fx-border-color: black;");
         primaryStage.getIcons().add(new Image("/icon2048.jpg"));
         Scene scene = new Scene(mainArea);
-
+            
+            
         primaryStage.setScene(scene);
         GameBoardOperation gameBoardOperation = new GameBoardOperation();
         for (int i = 0; i < 2; i++) {
@@ -48,7 +51,6 @@ public class GameRenderer extends Application {
                         new GameBoardOperation().moveAllTitles(GameBoard.Direction.DOWN);
                 case LEFT ->
                         new GameBoardOperation().moveAllTitles(GameBoard.Direction.LEFT);
-
                 case RIGHT ->
                         new GameBoardOperation().moveAllTitles(GameBoard.Direction.RIGHT);
                 default -> throw new IllegalStateException("Unexpected value: " + event.getCode());
