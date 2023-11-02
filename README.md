@@ -9,7 +9,7 @@ Simple-2048-Game is a straightforward implementation of the popular 2048 puzzle 
 Project is currently under developmet but ready for use and have all functionalities.
 
 ### To Be Implemented:
-
+- [ ] Win
 - [ ] Animation
 - [ ] gui scaling
 - [ ] json config or css 
