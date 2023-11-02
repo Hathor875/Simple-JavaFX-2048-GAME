@@ -99,6 +99,10 @@ public class GameRenderer extends Application {
         });
         Score.setScore(0);
         GameMatrix.getInstance().setGameMatrix(new int [GameMatrix.getInstance().getMatrixSize()][GameMatrix.getInstance().getMatrixSize()]);
+        GameBoardOperation gameBoardOperation = new GameBoardOperation();
+        for (int i = 0; i < 2; i++) {
+            gameBoardOperation.addRandomTitle();
+        }
     }
 
     public static void main(String[] args) {
