@@ -1,16 +1,20 @@
 package com.example.simple2048game;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-
 
 
 public class GameRenderer extends Application {
@@ -56,7 +60,9 @@ public class GameRenderer extends Application {
                 default -> throw new IllegalStateException("Unexpected value: " + event.getCode());
             }
             clearGameMatrix();
-           gameBoardOperation.addRandomTitle();
+            if (checkLose()) {
+                gameBoardOperation.addRandomTitle();
+            }
             renderGameMatrix();
         });
         primaryStage.show();
@@ -65,24 +71,34 @@ public class GameRenderer extends Application {
     public void renderGameMatrix() {
         int[][] tab = GameMatrix.getInstance().getGameMatrix();
 
-
-        for (int i = 0; i < GameMatrix.getInstance().getMatrixSize(); i++) {
+        if (checkLose()){
+            for (int i = 0; i < GameMatrix.getInstance().getMatrixSize(); i++) {
             for (int k = 0; k < GameMatrix.getInstance().getMatrixSize(); k++) {
                 gameArea.add(new GameBoardOperation().addRectangleWithText(tab[k][i]), i, k);
             }
-        }
+        }}
     }
     static private void clearGameMatrix() {
         gameArea.getChildren().clear();
     }
+    static private boolean checkLose(){
+        return null != new GameBoardOperation().findEmptyFields(GameMatrix.getInstance().getGameMatrix());
+    }
     static public void gameOver(){
-
         clearGameMatrix();
-        System.out.println("lose"+Score.getScore());
+        Alert lose = new Alert(Alert.AlertType.INFORMATION);
+        ButtonType okButton = new ButtonType("Restart");
+        lose.getButtonTypes().setAll(okButton);
+        lose.setTitle("Lose");
+        lose.setHeaderText(null);
+        Text loseMessage = new javafx.scene.text.Text("Lose\n your score: " + Score.getScore()+"  ");
+        loseMessage.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 16));
+        loseMessage.setFill(Color.CRIMSON);
+        lose.getDialogPane().setContent(loseMessage);
+        lose.showAndWait().ifPresent(response -> {
+        });
         Score.setScore(0);
         GameMatrix.getInstance().setGameMatrix(new int [GameMatrix.getInstance().getMatrixSize()][GameMatrix.getInstance().getMatrixSize()]);
-
-        //todo add game over
     }
 
     public static void main(String[] args) {

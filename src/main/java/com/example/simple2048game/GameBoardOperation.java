@@ -26,7 +26,7 @@ public class GameBoardOperation {
                     newRow[newIndex] = j;
                 } else if (newRow[newIndex] == j) {
                     Score.score += newRow[newIndex];
-                    Score.scoreText.setText("Wynik: " + Score.score);
+                    Score.scoreText.setText("Score: " + Score.score);
                     newRow[newIndex] *= 2;
                     newIndex++;
                 } else {
@@ -49,7 +49,7 @@ public class GameBoardOperation {
                 } else if (newRow[newIndex] == row[i]) {
                     newRow[newIndex] *= 2;
                     Score.score += newRow[newIndex];
-                    Score.scoreText.setText("Wynik: " + Score.score);
+                    Score.scoreText.setText("Score: " + Score.score);
                     newIndex--;
                 } else {
                     newIndex--;
@@ -113,7 +113,7 @@ public class GameBoardOperation {
     }
 
 
-    private  List<GameMatrix.Point> findEmptyFields(int[][] matrix) {
+    public  List<GameMatrix.Point> findEmptyFields(int[][] matrix) {
         return IntStream.range(0, matrix.length)
                 .boxed()
                 .flatMap(i -> IntStream.range(0, matrix[i].length)
@@ -127,16 +127,17 @@ public class GameBoardOperation {
         if(tempFreeTitle.isEmpty()){
             GameRenderer.gameOver();
         }
-        int rnd = (int) (Math.random() * tempFreeTitle.size());
-        int n = (int) (Math.random() * 10);
-        int value;
-        if (n <= 8) {
-            value = 2;
-        } else {
-            value = 4;
+        else {
+            int rnd = (int) (Math.random() * tempFreeTitle.size());
+            int n = (int) (Math.random() * 10);
+            int value;
+            if (n <= 8) {
+                value = 2;
+            } else {
+                value = 4;
+            }
+            GameMatrix.getInstance().getGameMatrix()[tempFreeTitle.get(rnd).x()][tempFreeTitle.get(rnd).y()] = value;
         }
-        GameMatrix.getInstance().getGameMatrix()[tempFreeTitle.get(rnd).x()][tempFreeTitle.get(rnd).y()] = value;
-
     }
     StackPane addRectangleWithText(int number) {
         double sizeY = 80;
