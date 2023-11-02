@@ -4,17 +4,15 @@ Simple-2048-Game is a straightforward implementation of the popular 2048 puzzle 
 
 ![screenshot](2048ss.png)
 
-_Note: If you have a screenshot of the game, you can place it in an appropriate directory in the repository and update the path above to showcase the screenshot in the README._
 
 ## 🚧 Project Status 🚧
-
-The project is currently under development and is not yet ready for full use. However, you can run and test its current functionalities.
+Project is currently under developmet but ready for use and have all functionalities.
 
 ### To Be Implemented:
 
-- [ ] Win condition
-- [ ] Lose condition
-- [ ] Displaying score
+- [ ] Animation
+- [ ] gui scaling
+- [ ] json config or css 
 
 ## 💡 How to Run
 
