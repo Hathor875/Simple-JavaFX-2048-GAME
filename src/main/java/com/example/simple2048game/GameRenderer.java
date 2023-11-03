@@ -1,4 +1,5 @@
 package com.example.simple2048game;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -21,6 +22,7 @@ public class GameRenderer extends Application {
    public static GridPane gameArea;
    public static BorderPane mainArea;
    public static StackPane score;
+   private static boolean winFlag = false;
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("2048 GAME");
@@ -70,7 +72,9 @@ public class GameRenderer extends Application {
     }
     public void renderGameMatrix() {
         int[][] tab = GameMatrix.getInstance().getGameMatrix();
-
+           if (!winFlag) {
+               checkWin();
+           }
         if (checkLose()){
             for (int i = 0; i < GameMatrix.getInstance().getMatrixSize(); i++) {
             for (int k = 0; k < GameMatrix.getInstance().getMatrixSize(); k++) {
@@ -84,6 +88,41 @@ public class GameRenderer extends Application {
     static private boolean checkLose(){
         return null != new GameBoardOperation().findEmptyFields(GameMatrix.getInstance().getGameMatrix());
     }
+
+    static private void checkWin(){
+        int[][] gameMatrix = GameMatrix.getInstance().getGameMatrix();
+        int elementToFind = 2048;
+
+
+        for (int[] row : gameMatrix) {
+            for (int element : row) {
+                if (element == elementToFind) {
+                    winFlag = true;
+                    message("Win!","Continue playing");
+                    break;
+                }
+            }
+
+        }
+
+    }
+
+
+    static public void message(String messageText, String buttonText){
+        Alert lose = new Alert(Alert.AlertType.INFORMATION);
+        ButtonType okButton = new ButtonType(buttonText);
+        lose.getButtonTypes().setAll(okButton);
+        lose.setTitle(messageText);
+        lose.setHeaderText(null);
+        Text loseMessage = new javafx.scene.text.Text(messageText+"\n your score: " + Score.getScore()+"  ");
+        loseMessage.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 16));
+        loseMessage.setFill(Color.CRIMSON);
+        lose.getDialogPane().setContent(loseMessage);
+        lose.showAndWait().ifPresent(response -> {
+        });
+    }
+
+
     static public void gameOver(){
         clearGameMatrix();
         Alert lose = new Alert(Alert.AlertType.INFORMATION);
@@ -100,6 +139,7 @@ public class GameRenderer extends Application {
         Score.setScore(0);
         GameMatrix.getInstance().setGameMatrix(new int [GameMatrix.getInstance().getMatrixSize()][GameMatrix.getInstance().getMatrixSize()]);
         GameBoardOperation gameBoardOperation = new GameBoardOperation();
+        winFlag = false;
         for (int i = 0; i < 2; i++) {
             gameBoardOperation.addRandomTitle();
         }
