@@ -91,14 +91,14 @@ public class GameRenderer extends Application {
 
     static private void checkWin(){
         int[][] gameMatrix = GameMatrix.getInstance().getGameMatrix();
-        int elementToFind = 2048;
+        int elementToFind = 16;
 
 
         for (int[] row : gameMatrix) {
             for (int element : row) {
                 if (element == elementToFind) {
                     winFlag = true;
-                    message("Win!","Continue playing");
+                    message("Win!","Continue playing","Game-over");
                     break;
                 }
             }
@@ -108,17 +108,25 @@ public class GameRenderer extends Application {
     }
 
 
-    static public void message(String messageText, String buttonText){
-        Alert lose = new Alert(Alert.AlertType.INFORMATION);
+    static public void message(String messageText, String buttonText,String buttonText2){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         ButtonType okButton = new ButtonType(buttonText);
-        lose.getButtonTypes().setAll(okButton);
-        lose.setTitle(messageText);
-        lose.setHeaderText(null);
+        ButtonType resetButton = new ButtonType(buttonText2);
+        alert.getButtonTypes().setAll(okButton,resetButton);
+        alert.setTitle(messageText);
+        alert.setHeaderText(null);
         Text loseMessage = new javafx.scene.text.Text(messageText+"\n your score: " + Score.getScore()+"  ");
         loseMessage.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 16));
         loseMessage.setFill(Color.CRIMSON);
-        lose.getDialogPane().setContent(loseMessage);
-        lose.showAndWait().ifPresent(response -> {
+        alert.getDialogPane().setContent(loseMessage);
+        alert.showAndWait().ifPresent(response -> {
+            if (response == resetButton) {
+
+                gameOver();
+            }
+
+
+
         });
     }
 
