@@ -91,7 +91,7 @@ public class GameRenderer extends Application {
 
     static private void checkWin(){
         int[][] gameMatrix = GameMatrix.getInstance().getGameMatrix();
-        int elementToFind = 16;
+        int elementToFind = 2048;
 
 
         for (int[] row : gameMatrix) {
