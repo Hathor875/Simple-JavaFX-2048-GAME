@@ -1,6 +1,6 @@
 # Simple-2048-Game 🎮
 
-Simple-2048-Game is a straightforward implementation of the popular 2048 puzzle game, crafted with JavaFX.
+Simple-2048-Game is a straightforward implementation of the popular 2048 puzzle game, powered with JavaFX.
 
 ![screenshot](2048ss.png)
 
@@ -9,7 +9,6 @@ Simple-2048-Game is a straightforward implementation of the popular 2048 puzzle 
 Project is currently under developmet but ready for use and have all functionalities.
 
 ### To Be Implemented:
-- [ ] Reset when win
 - [ ] Animation
 - [ ] Gui scaling
 - [ ] Json config or css 
