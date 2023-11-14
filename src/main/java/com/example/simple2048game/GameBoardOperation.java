@@ -125,7 +125,8 @@ public class GameBoardOperation {
     public void addRandomTitle() {
         List<GameMatrix.Point> tempFreeTitle = findEmptyFields(GameMatrix.getInstance().getGameMatrix());
         if(tempFreeTitle.isEmpty()){
-            GameRenderer.gameOver();
+            GameRenderer gameRenderer = new GameRenderer();
+            gameRenderer.renderGameMatrix();
         }
         else {
             int rnd = (int) (Math.random() * tempFreeTitle.size());

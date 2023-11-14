@@ -91,7 +91,7 @@ public class GameRenderer extends Application {
 
     static private void checkWin(){
         int[][] gameMatrix = GameMatrix.getInstance().getGameMatrix();
-        int elementToFind = 2048;
+        int elementToFind = 8;
 
 
         for (int[] row : gameMatrix) {
@@ -115,14 +115,15 @@ public class GameRenderer extends Application {
         alert.getButtonTypes().setAll(okButton,resetButton);
         alert.setTitle(messageText);
         alert.setHeaderText(null);
-        Text loseMessage = new javafx.scene.text.Text(messageText+"\n your score: " + Score.getScore()+"  ");
-        loseMessage.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 16));
-        loseMessage.setFill(Color.CRIMSON);
-        alert.getDialogPane().setContent(loseMessage);
+        Text message = new javafx.scene.text.Text(messageText+"\n your score: " + Score.getScore()+"  ");
+        message.setFont(Font.font("Arial", FontWeight.BOLD, FontPosture.ITALIC, 16));
+        message.setFill(Color.CRIMSON);
+        alert.getDialogPane().setContent(message);
         alert.showAndWait().ifPresent(response -> {
             if (response == resetButton) {
 
-                gameOver();
+               GameRenderer gameRenderer = new GameRenderer();
+               gameRenderer.gameOver();
             }
 
 
@@ -131,7 +132,7 @@ public class GameRenderer extends Application {
     }
 
 
-    static public void gameOver(){
+     public void gameOver(){
         clearGameMatrix();
         Alert lose = new Alert(Alert.AlertType.INFORMATION);
         ButtonType okButton = new ButtonType("Restart");
@@ -145,12 +146,14 @@ public class GameRenderer extends Application {
         lose.showAndWait().ifPresent(response -> {
         });
         Score.setScore(0);
+
         GameMatrix.getInstance().setGameMatrix(new int [GameMatrix.getInstance().getMatrixSize()][GameMatrix.getInstance().getMatrixSize()]);
         GameBoardOperation gameBoardOperation = new GameBoardOperation();
         winFlag = false;
         for (int i = 0; i < 2; i++) {
             gameBoardOperation.addRandomTitle();
         }
+        renderGameMatrix();
     }
 
     public static void main(String[] args) {

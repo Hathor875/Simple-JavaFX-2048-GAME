@@ -9,7 +9,7 @@ import static javafx.scene.text.Font.font;
 
 public class Score {
     static int score = 0;
-    public static Text scoreText = new Text("Score: " + score);
+    public static final Text scoreText = new Text("Score: " + score);
     private static final StackPane scoreContainer = new StackPane(scoreText);
 
     public static int getScore() {
